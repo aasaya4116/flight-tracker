@@ -40,7 +40,7 @@ def search_flights(destination: str) -> list[dict]:
     other  = results.get("other_flights", [])
     print(f"  {destination}: {len(best)} best, {len(other)} other flights found")
     if not best and not other:
-        print(f"  Raw keys returned: {list(results.keys())}")
+        print(f"  Error: {results.get('error', 'unknown')}")
     return best + other
 
 
