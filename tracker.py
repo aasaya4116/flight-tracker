@@ -100,6 +100,8 @@ def send_notification(body: str, title: str = "Tokyo Flight Tracker"):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    key = os.getenv("SERPAPI_KEY", "")
+    print(f"API key loaded: {'YES, starts with ' + key[:6] if key else 'NO - key is missing'}")
     print(f"Searching flights {ORIGIN} -> Tokyo on {date.today()}...")
     offer = find_cheapest()
 
