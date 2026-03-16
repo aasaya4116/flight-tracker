@@ -36,7 +36,12 @@ def search_flights(destination: str) -> list[dict]:
         "api_key":         os.getenv("SERPAPI_KEY"),
     }
     results = GoogleSearch(params).get_dict()
-    return results.get("best_flights", []) + results.get("other_flights", [])
+    best   = results.get("best_flights", [])
+    other  = results.get("other_flights", [])
+    print(f"  {destination}: {len(best)} best, {len(other)} other flights found")
+    if not best and not other:
+        print(f"  Raw keys returned: {list(results.keys())}")
+    return best + other
 
 
 def find_cheapest() -> dict | None:
