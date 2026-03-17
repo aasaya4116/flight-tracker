@@ -2,7 +2,7 @@ name: Daily Flight Tracker
 
 on:
   schedule:
-    - cron: '0 17 * * *'  # 12pm EST (17:00 UTC)
+    - cron: '0 15 * * *'  # 10am EST (15:00 UTC)
   workflow_dispatch:        # allows manual run from GitHub UI
 
 jobs:
