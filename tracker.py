@@ -21,7 +21,7 @@ ROUTES = [
         "origin":        "IAD",
         "destinations":  ["HND"],   # UA 803 flies IAD → HND
         "label":         "DC (IAD)",
-        "flight_number": "803",     # pin to UA 803
+        "flight_number": None,      # any non-stop
         "stops":         "1",       # non-stop only
     },
     {
