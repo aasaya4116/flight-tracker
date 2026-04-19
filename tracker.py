@@ -1,7 +1,7 @@
 """
 Daily flight price tracker
-Routes : IAD -> Tokyo (non-stop, UA 803) | RDU -> Tokyo (1-stop)
-Windows: Nov 17-27 / Nov 18-28 / Nov 19-29
+Routes : IAD -> Tokyo (non-stop)
+Windows: Nov 24-Dec 4 / Nov 25-Dec 5
 """
 
 import os
@@ -24,20 +24,11 @@ ROUTES = [
         "flight_number": None,      # any non-stop
         "stops":         "1",       # non-stop only
     },
-    {
-        "origin":        "RDU",
-        "destinations":  ["NRT", "HND"],
-        "label":         "Raleigh (RDU)",
-        "flight_number": None,      # any airline
-        "stops":         "2",       # 1 stop or fewer
-    },
 ]
 
 DATE_WINDOWS = [
-    ("2026-11-17", "2026-11-27"),
-    ("2026-11-18", "2026-11-28"),
-    ("2026-11-19", "2026-11-29"),
-    ("2026-11-20", "2026-11-30"),
+    ("2026-11-24", "2026-12-04"),
+    ("2026-11-25", "2026-12-05"),
 ]
 
 # ── Flight search ─────────────────────────────────────────────────────────────
@@ -101,9 +92,15 @@ def format_route_message(route, results):
 
     any_found = False
     for (depart, ret), offer in results:
-        d_day = depart[8:10]
-        r_day = ret[8:10]
-        window_label = f"Nov {d_day}-{r_day}"
+        d_month = depart[5:7]
+        d_day   = depart[8:10]
+        r_month = ret[5:7]
+        r_day   = ret[8:10]
+        MONTHS  = {"11": "Nov", "12": "Dec"}
+        if d_month == r_month:
+            window_label = f"{MONTHS[d_month]} {d_day}-{r_day}"
+        else:
+            window_label = f"{MONTHS[d_month]} {d_day}-{MONTHS[r_month]} {r_day}"
         if offer is None:
             lines.append(f"{window_label}: No results")
         else:
