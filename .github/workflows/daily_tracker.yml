@@ -20,6 +20,6 @@ jobs:
 
       - name: Run flight tracker
         env:
-          SERPAPI_KEY: fa5f1839cc0b5098fee9e58d470f520f3cef50f2421e0be2de57aa35db191806
-          NTFY_TOPIC: iad-tokyo-flights-adebowale
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python tracker.py
